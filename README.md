@@ -229,7 +229,7 @@ var listOfBlah = _repo.DataAccessLayer.GetWhatever();
 ```csharp
 var students = new List<Students>(); 
 var memoryStream = new MemoryStream();
-var dateUntilProgramExpiry = DateTime.Now; 
+var dateUntilProgramExpiry = DateTime.UtcNow; 
 ```
 
 A suggestion would be to use var where the type is clear, if the type isn't clear, then use the type. 
@@ -270,6 +270,7 @@ var person = new Person {
 	LastName = "Durano"
 };
 ```
+
 The preceding code is more natural to read and the intent is clear because the properties are defined within braces.
 
 ## Tip #14
@@ -448,7 +449,7 @@ This is so that our code are consistent with the Microsoft .NET Framework.
 ```csharp
 public void MethodName(CreatePersonRequestDto requestDto) 
 { 
-       var firstName = requestDto.FirstName; 
+    var firstName = requestDto.FirstName; 
 } 
 ```
 This is so that our code are consistent with the Microsoft .NET Framework.
@@ -460,7 +461,7 @@ int daysUntilProgramExpiry;
 
 public List<Person> GetPersonProfileById(long personId)
 {
-       //do something
+    //do something
 }
 ```
 This makes your code easier to read and understand without having you to write (or atleast minimizes) comments of what the code does.
@@ -470,7 +471,7 @@ This makes your code easier to read and understand without having you to write (
 ```csharp
 public async Task<List<Person>> GetPersonProfileByIdAsync(long personId)
 {
-     //do something
+    //do something
 }
 ```
 
@@ -563,7 +564,7 @@ public PersonManager person_Manager;
 private long rows_Affected;
 private DateTime row_updated_date_time;
 ```
-The reason being is that C# isn't postgres. Seriously, it's to be consistent with the Microsost .NET Framework convention and makes your code more natural to read. It can also avoid "underline stress" or inability to see underline.
+The reason being is that C# isn't postgres. Seriously, it's to be consistent with the Microsoft .NET Framework convention and makes your code more natural to read. It can also avoid "underline stress" or inability to see underline.
 
 ## Tip #32
 ✋ Do not use SCREAMING CAPS for constants or read-only variables:
