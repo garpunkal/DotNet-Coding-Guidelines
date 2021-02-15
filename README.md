@@ -1,11 +1,4 @@
 # C# Coding Guidelines & Practices
-This repo highlights the list of software engineering guidelines in general. Most of these are industry-wise conventions, thus using them will ensure that your code is easily readable by people who are not you.
-
-It's a fact that coding standards are arbitrary. The key to a successful maintainable project, however, is not which standards you follow, but that you are consistent.
-
-Just keep in mind that this post isn't about how you should indent your code (tabs vs spaces or curly braces placements), but it's more of a guidlines on how to write clean code that are easy to manage. With that said, if you are leading a team or even a single contributor developer who wanted to become better, having a set of coding guidelines is a great start to make that happen.
-
-In this post, I will highlight the list of software engineering guidelines in general. Most of these are industry-wise conventions, thus using them will ensure that your code is easily readable by people who are not you.
 
 ### Tip #1
 ✋ Try to avoid the tradional if-else statements like in the following:
@@ -108,21 +101,19 @@ if (number is null)
 ```
 
 ### Tip #6
-✋ Avoid code without braces ({}) for single conditional if statement, for and foreach loops like in the following:
+✋ Avoid code with braces ({}) for single conditional if statement, for and foreach loops like in the following:
 ```
-if(conditioin) action;
+if(condition) {action };
 ```
-Without the braces, it is too easy to accidentally add a second line thinking it is included in the if, when it isn’t.
 
-👍 Always use braces instead:
+👍 Always remove the braces:
 ```
-if (condition) { action; }
+if (condition) action; 
 
 //or better
 if (condition) 
-{ 
     action; 
-}
+
 ```
 
 ### Tip #7
@@ -211,12 +202,12 @@ The preceding code is much more concise and readable compared to other approache
 ### Tip #10
 ✋ Try to avoid string.Format() when formatting simple objects like in the following:
 ```
-var date = DateTime.Now;
+var date = DateTime.UtcNow;
 string greetings = string.Format("Today is {0}, the time is {1:HH:mm} now.", date.DayOfWeek, date);
 ```
 👍 Use string interpolation instead:
 ```
-var date = DateTime.Now;
+var date = DateTime.UtcNow;
 string greetings = $"Today is {date.DayOfWeek}, the time is {date:HH:mm} now.");
 ```
 The preceding code is much easier to understand and concise. However, there are certain cases that using the string.Format() would makes more sense. For example, when dealing with complex formatting and data manipulation. So, use your judgement when to apply them in situations.
