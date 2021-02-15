@@ -196,7 +196,7 @@ string greetings = string.Format("Hello {0}!", name);
 👍 Or prefer using Prefer using string interpolation ($) instead where possible:
 ```csharp
 string name = "Vjor";
-string greeting = $"Hello, {name}!;
+string greeting = $"Hello, {name}!";
 ```
 The preceding code is much more concise and readable compared to other approaches.
 
