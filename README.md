@@ -234,12 +234,10 @@ var dateUntilProgramExpiry = DateTime.UtcNow;
 
 A suggestion would be to use var where the type is clear, if the type isn't clear, then use the type. 
 
-e.g. 
 ```csharp
 var students = new List<Students>();
 Student student = Method.Get(); 
 ```
-
 
 
 ## Tip #12
