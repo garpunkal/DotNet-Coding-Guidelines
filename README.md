@@ -626,25 +626,25 @@ This allows you to match your variable to a type and then easily assign to a var
 https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
 
 ```csharp
-  if (shape is Square s)
-        return s.Side * s.Side;
+if (shape is Square s)
+    return s.Side * s.Side;
 ```
 
 It works well in switch statements too: 
 ```csharp
 switch (shape)
-    {
-        case Square s:
-            return s.Side * s.Side;
-        case Circle c:
-            return c.Radius * c.Radius * Math.PI;
-        case Rectangle r:
-            return r.Height * r.Length;
-        default:
-            throw new ArgumentException(
-                message: "shape is not a recognized shape",
-                paramName: nameof(shape));
-    }
+{
+    case Square s:
+        return s.Side * s.Side;
+    case Circle c:
+        return c.Radius * c.Radius * Math.PI;
+    case Rectangle r:
+        return r.Height * r.Length;
+    default:
+        throw new ArgumentException(
+            message: "shape is not a recognized shape",
+            paramName: nameof(shape));
+}
 ```
 
 ## Tip #37
@@ -653,23 +653,20 @@ switch (shape)
 if you want to add extra conditions to the switch statements, you can use 'when' alongside pattern matching.
 
 ```csharp
-public static double ComputeArea_Version3(object shape)
+switch (shape)
 {
-    switch (shape)
-    {
-        case Square s when s.Side == 0:
-        case Circle c when c.Radius == 0:
-            return 0;
+    case Square s when s.Side == 0:
+    case Circle c when c.Radius == 0:
+        return 0;
 
-        case Square s:
-            return s.Side * s.Side;
-        case Circle c:
-            return c.Radius * c.Radius * Math.PI;
-        default:
-            throw new ArgumentException(
-                message: "shape is not a recognized shape",
-                paramName: nameof(shape));
-    }
+    case Square s:
+        return s.Side * s.Side;
+    case Circle c:
+        return c.Radius * c.Radius * Math.PI;
+    default:
+        throw new ArgumentException(
+            message: "shape is not a recognized shape",
+            paramName: nameof(shape));
 }
 ```
 
@@ -679,14 +676,10 @@ public static double ComputeArea_Version3(object shape)
 You can discard a value by using _.
 
 ```csharp
-   if (DateTime.TryParse("02/29/2019", out _))  
-{  
+if (DateTime.TryParse("02/29/2019", out _))  
     Console.WriteLine("Date is valid");  
-}  
 else  
-{  
-    Console.WriteLine("Date is not valid");  
-}  
+    Console.WriteLine("Date is not valid");   
 ```
 This ignores the out variable, but allows us to make use of the boolean result:
 https://www.c-sharpcorner.com/blogs/c-sharp-hidden-gems-sharp1-discards-variable
