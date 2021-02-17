@@ -618,3 +618,76 @@ can be written in the following way using record:
 public record Person(string FirstName, string LastName);
 ```
 Using record types will automatically generates the boilerplate code for you and keeping your code concise. Records will be really useful for defining DTOs, Commands or any object that carries immutable data around. For more information about this feature, see: [Record Types](https://devblogs.microsoft.com/dotnet/c-9-0-on-the-record/)
+
+## Tip #36
+👍 Use pattern matching. 
+
+This allows you to match your variable to a type and then easily assign to a variable: 
+https://docs.microsoft.com/en-us/dotnet/csharp/pattern-matching
+
+```csharp
+  if (shape is Square s)
+        return s.Side * s.Side;
+```
+
+It works well in switch statements too: 
+```csharp
+switch (shape)
+    {
+        case Square s:
+            return s.Side * s.Side;
+        case Circle c:
+            return c.Radius * c.Radius * Math.PI;
+        case Rectangle r:
+            return r.Height * r.Length;
+        default:
+            throw new ArgumentException(
+                message: "shape is not a recognized shape",
+                paramName: nameof(shape));
+    }
+```
+
+## Tip #37
+👍 Use when clauses in case expressions
+
+if you want to add extra conditions to the switch statements, you can use 'when' alongside pattern matching.
+
+```csharp
+public static double ComputeArea_Version3(object shape)
+{
+    switch (shape)
+    {
+        case Square s when s.Side == 0:
+        case Circle c when c.Radius == 0:
+            return 0;
+
+        case Square s:
+            return s.Side * s.Side;
+        case Circle c:
+            return c.Radius * c.Radius * Math.PI;
+        default:
+            throw new ArgumentException(
+                message: "shape is not a recognized shape",
+                paramName: nameof(shape));
+    }
+}
+```
+
+## Tip #38
+👍 discarding
+
+You can discard a value by using _.
+
+```csharp
+   if (DateTime.TryParse("02/29/2019", out _))  
+{  
+    Console.WriteLine("Date is valid");  
+}  
+else  
+{  
+    Console.WriteLine("Date is not valid");  
+}  
+```
+This ignores the out variable, but allows us to make use of the boolean result:
+https://www.c-sharpcorner.com/blogs/c-sharp-hidden-gems-sharp1-discards-variable
+
